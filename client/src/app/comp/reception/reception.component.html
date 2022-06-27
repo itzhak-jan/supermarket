@@ -1,0 +1,22 @@
+<p>reception works!</p>
+
+<div class="reception">
+    <h1>reception-page!</h1>
+
+    reception for {{cartsService.reception[0].useraName}}. <br>
+    order date: {{cartsService.reception[0].orderDate| date:"dd/MM/yy" }}. <br>
+    shipment to: {{cartsService.reception[0].adress}}. <br>
+    _________________________________
+
+    <div class="container">
+        <div class="product" id="product" *ngFor="let product of this.cartsService.reception">
+            <div>{{product.prodName}}</div>
+            <div>{{product.price}} * {{product.count}}units = {{product.price*product.count | currency:'ILS'}}</div>
+            _________________________________
+        </div>
+
+        total price: {{cartsService.reception[0].const| currency:'ILS'}} <br>
+        <button type="submit" (click)="backToStore()">Back to store</button>
+        <button type="submit" (click)="downloadReceipt()">Download receipt</button>
+
+    </div>

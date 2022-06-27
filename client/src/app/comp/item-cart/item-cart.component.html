@@ -1,0 +1,19 @@
+<div class="product-cart" *ngIf='productCart' (mouseover)='over()' (mouseout)='out()'>
+    <div> <img src={{productCart.img}} class="product-img" /></div>
+
+    <div class="container">
+        <div id="product-name"> {{productCart.name}}</div>
+        <div> Price: {{productCart.price}}₪ </div>
+
+        <div class="category"> amount of product: {{productCart.amount}}</div>
+
+        <div class="change-amount" [hidden]="!this.isHover">
+            change amount:
+            <br>
+            <button class="count-button" (click)="lessCount()"> ➖ </button>
+            <input type="text" class="count-input" [(ngModel)]="countToBy" />
+            <button class="count-button" (click)="addCount()"> ➕ </button>
+            <button class="save-button" (click)="onSaveClicked()">save</button>
+        </div>
+    </div>
+</div>

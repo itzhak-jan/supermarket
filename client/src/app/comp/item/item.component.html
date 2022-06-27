@@ -1,0 +1,19 @@
+<div class="product-card" (mouseover)='over()' (mouseout)='out()' *ngIf='product.name.toLocaleLowerCase().includes(this.stateService.search.toLocaleLowerCase()) ||
+     product.category.toLocaleLowerCase().includes(this.stateService.search.toLocaleLowerCase()) '>
+    <img src={{product.img}} class="product-img" />
+    <div id="product-name"> {{product.name}}</div>
+    <div>Price: {{product.price}}₪ </div>
+    <div class="category" (click)="searchCategory()">{{product.category}}</div>
+    <br>
+    <div class="bay-button" [hidden]="!this.isHover" *ngIf="this.stateService.status != 'admin'">
+        <button class="count-button" (click)="lessCount()"> ➖ </button>
+        <input type="text" class="count-input" [(ngModel)]="countToBy" />
+        <button class="count-button" (click)="addCount()"> ➕ </button>
+        <span class="add-button" (click)="onAddCliced()">add to cart</span>
+    </div>
+
+    <div class="bay-button" [hidden]="!this.isHover" *ngIf="this.stateService.status == 'admin'">
+        <span class="add-button" (click)="editProduct()">Edit peoduct</span>
+    </div>
+
+</div>

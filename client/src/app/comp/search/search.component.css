@@ -1,0 +1,11 @@
+:host {
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.search-input {
+    border: 2px solid black;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 15px;
+}

@@ -1,0 +1,56 @@
+:host {
+    grid-column: span 12;
+    margin-top: 15px;
+}
+
+.Register {
+    margin-left: auto;
+    margin-right: auto;
+
+    background-color: aliceblue;
+    width: 320px;
+    padding: 20px;
+}
+
+.register-inputs{
+    margin: 0px;
+}
+
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+    align-items: center;
+    width: 300px;
+}
+
+.birth-date {
+    margin: 5px;
+}
+
+
+.register-button {
+    opacity: 70%;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 5px;
+}
+
+.register-button:hover {
+    opacity: 100%;
+}
+
+.error{
+    border: 3px solid red;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.error-message{
+    margin: 0px;
+    font-size: 14px;
+    color: red;
+}
+
+

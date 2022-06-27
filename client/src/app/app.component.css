@@ -1,0 +1,26 @@
+:host{
+    text-align: center;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); 
+    padding: 0px;
+}
+app-search{
+    grid-column: span 3;
+    background-color: #9ff2c9;
+}
+
+app-header{ 
+    grid-column: span 6;
+    background-color: #9ff2c9;
+}
+app-menu{
+    grid-column: span 3;
+    background-color: #9ff2c9;
+}
+
+router-outlet{
+    grid-column: span 12;
+}
+
+

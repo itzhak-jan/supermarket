@@ -1,0 +1,72 @@
+<button class="onAddNewProductHTML" (click)="onAddNewProductHTML()">add new product</button>
+<div class="product-card" *ngIf="this.stateService.editProduct">
+    <div><img src={{this.stateService.editProduct.img}} class="product-img" /><br>
+        new url-img: <input type="text" [(ngModel)]="imgUrl"></div>
+    <div>
+        <p class="old">old name: {{this.stateService.editProduct.name}}</p>
+        new name: <input type="text" [(ngModel)]="name">
+    </div>
+    <div>
+        <p class="old">old Price: {{this.stateService.editProduct.price | currency:'ILS'}}</p>
+        new price: <input type="number" [(ngModel)]="price">
+    </div>
+    <div>
+        <p class="old">old category: {{this.stateService.editProduct.category}}</p>
+        new category: <select type="text" [class.error]="errorMassege.includes('category-empty')"
+            [(ngModel)]="categoryID">
+            <option *ngFor="let categoryName of this.categories.categoriesArr" value="{{categoryName.id}}">
+                {{categoryName.name}}</option>
+        </select>
+        <br>
+        <button (click)="save()">save change</button>
+        <button (click)="cancel()">cancel change</button>
+    </div>
+</div>
+
+
+<div class="product-card" *ngIf="AddNewProductHTML && !this.stateService.editProduct">
+    <div>url-img: <input type="text" [(ngModel)]="imgUrl" [class.error]="errorMassege.includes('imgUrl-empty')">
+        <p [hidden]="!errorMassege.includes('imgUrl-empty')" class="error-message">imgUrl-empty</p>
+    </div>
+    <div>name: <input type="text" [(ngModel)]="name" [class.error]="errorMassege.includes('name-empty')">
+        <p [hidden]="!errorMassege.includes('name-empty')" class="error-message">name-empty</p>
+    </div>
+    <div>price: <input type="number" [(ngModel)]="price" [class.error]="errorMassege.includes('price-empty')">
+        <p [hidden]="!errorMassege.includes('price-empty')" class="error-message">price-empty</p>
+    </div>
+    <div>category: <select type="text" [class.error]="errorMassege.includes('category-empty')" [(ngModel)]="categoryID">
+            <option *ngFor="let categoryName of this.categories.categoriesArr" value="{{categoryName.id}}">
+                {{categoryName.name}}</option>
+        </select>
+        <p [hidden]="!errorMassege.includes('category-empty')" class="error-message">category-empty</p>
+    </div>
+    <br>
+    <button (click)="addProduct()">add-product</button>
+    <button (click)="cancelAdd()">cancel</button>
+</div>
+
+
+
+
+
+
+<div class="orders-table">
+    <h1>orders table</h1>
+
+    <table>
+        <tr>
+            <th>id</th>
+            <th>user</th>
+            <th>totalPrice</th>
+            <th>dateOrder</th>
+            <th>amount of product</th>
+        </tr>
+        <tr *ngFor="let order of ordersArr">
+            <td>{{order.id}}</td>
+            <td>{{order.user}}</td>
+            <td>{{order.totalPrice | currency:'ILS'}}</td>
+            <td>{{order.dateOrder| date:"dd/MM/yy" }}</td>
+            <td>{{order.amountOfProduct}} products</td>
+        </tr>
+    </table>
+</div>

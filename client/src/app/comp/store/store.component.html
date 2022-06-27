@@ -1,0 +1,10 @@
+<br>
+<div class="bar-category">
+    <div class="category" (click)="searchCategory('')">get all</div>
+    <div class="category" *ngFor="let category of this.categories.categoriesArr" (click)="searchCategory(category.name)">{{category.name}}</div>
+</div>
+<div class="container">
+    <div *ngFor="let product of productsArray" class="product-card">
+        <app-item [product]="product"></app-item>
+    </div>
+</div>

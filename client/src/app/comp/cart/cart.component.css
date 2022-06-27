@@ -1,0 +1,45 @@
+:host {
+    grid-column: span 3;
+    display: flex;
+    flex-direction: column;
+
+    background-repeat: no-repeat;
+    background-position: center;
+
+    margin-top: 20px;
+    background-color: rgb(255, 255, 255, 0.7);
+}
+
+.header {
+
+    padding: 5px;
+    margin-bottom: 0%;
+
+}
+
+.container {
+    margin-top: 6px;
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.Total-price {
+    margin-top: 0%;
+}
+
+.continue-to-pay {
+    cursor: pointer;
+    width: 70%;
+    height: 5ch;
+    background-color: rgb(4, 113, 0, 0.3);
+    font-size: 20px;
+}
+
+.continue-to-pay:hover {
+    cursor: pointer;
+    background-color: rgb(4, 113, 0, 0.7);
+    border: 4px solid black;
+    font-weight: bolder;
+}

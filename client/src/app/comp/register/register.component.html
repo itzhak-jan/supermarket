@@ -1,0 +1,71 @@
+<div class='Register' [hidden]="!page01Register">
+    <h1>Register</h1>
+
+    <div class="container">
+            <p class="register-inputs"> your mail: <input type="text" [(ngModel)]="mail"
+                            [class.error]="errorMassege.includes('MailEmpty') || errorMassege.includes('isMailNotReal')" />
+            </p>
+            <p [hidden]="!errorMassege.includes('MailEmpty')" class="error-message">Your mail is empty</p>
+            <p [hidden]="!errorMassege.includes('isMailNotReal')" class="error-message">Your mail is not real</p>
+
+            <br />
+            <p class="register-inputs">Full name: <input type="mail" [(ngModel)]="userName"
+                            [class.error]="errorMassege.includes('UserNameEmpty')" /></p>
+            <p [hidden]="!errorMassege.includes('UserNameEmpty')" class="error-message">Your name is empty</p>
+            <br />
+            <p class="register-inputs"> password: <input type="password" [(ngModel)]="password"
+                            [class.error]="errorMassege.includes('PasswordEmpty')||errorMassege.includes('PasswordShort')" />
+            </p>
+            <p [hidden]="!errorMassege.includes('PasswordEmpty')" class="error-message">Your password is empty</p>
+            <p [hidden]="!errorMassege.includes('PasswordShort')" class="error-message">Your password is too short,
+                    needs at
+                    least 6 characters </p>
+            <br />
+            <p class="register-inputs">repeat-password: <input type="password" [(ngModel)]="repeatPassword"
+                            [class.error]="errorMassege.includes('RepeatPasswordNotGood')" /></p>
+            <p [hidden]="!errorMassege.includes('RepeatPasswordNotGood')" class="error-message">The repeat-password
+                    does not
+                    match the original
+                    password</p>
+            <br />
+    </div>
+    <p class="register-inputs">birth-date: <input type="date" class="birth-date" [(ngModel)]="birthDate"
+                    [class.error]="errorMassege.includes('BirthDateEmpty')"></p>
+    <p [hidden]="!errorMassege.includes('BirthDateEmpty')" class="error-message">Your birth-date is empty</p>
+    <br />
+
+    <input type="submit" value="continue" class='register-button' (click)="validPage01()" />
+</div>
+
+<div class='Register' [hidden]="!page02Register">
+    <h1>Register</h1>
+
+    <div class="container">
+            <p class="register-inputs"> your city: <select [(ngModel)]="city"
+                            [class.error]="errorMassege.includes('cityEmpty')">
+                            <option value="Jerusalem">Jerusalem</option>
+                            <option value="Tel-Aviv">Tel-Aviv</option>
+                            <option value="Netanya">Netanya</option>
+                            <option value="Haifa">Haifa</option>
+                            <option value="Beer-Sheva">Beer-Sheva</option>
+                            <option value="Ashdod">Ashdod</option>
+                    </select></p>
+            <p [hidden]="!errorMassege.includes('cityEmpty')" class="error-message">Your city is empty</p>
+            <br />
+
+            <p class="register-inputs">adress: <input type="text" class="adress" [(ngModel)]="adress"
+                            [class.error]="errorMassege.includes('adressEmpty')"></p>
+            <p [hidden]="!errorMassege.includes('adressEmpty')" class="error-message">Your adress is empty</p>
+            <br />
+
+            <p class="register-inputs">ID card: <input type="number" [(ngModel)]="cardID"
+                            [class.error]="errorMassege.includes('cardIDEmpty')"></p>
+            <p [hidden]="!errorMassege.includes('cardIDEmpty')" class="error-message">Your Card-id is empty</p>
+            <p [hidden]="!errorMassege.includes('cardIDNotGood')" class="error-message">An ID card must consist of 9
+                    characters</p>
+
+            <br />
+
+    </div>
+    <input type="submit" value="Register" class='register-button' (click)="validPage02()" />
+</div>

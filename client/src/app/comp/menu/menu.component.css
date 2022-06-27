@@ -1,0 +1,17 @@
+:host{
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+.menu-button{
+    margin: 5px;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 7px;
+}
+
+.menu-button:hover{
+    margin: 3px;
+    border: 3px solid black;
+    font-size: +3;
+    cursor: pointer;
+}

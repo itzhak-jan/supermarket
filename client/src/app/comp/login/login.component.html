@@ -1,0 +1,14 @@
+<div class="login" [hidden]="!isPage01">
+    User name : <input type="text" placeholder="User name" [(ngModel)]="userName" /><br><br>
+    Password : <input type="password" placeholder="Password" [(ngModel)]="password" /><br>
+    <input type="button" value="Login" class="button-cart" (click)="onLoginClicked()" />
+    <marquee>we have {{paramsToLoginPage.amountOfProduct}} products and {{paramsToLoginPage.amountOfOrders}}
+        orders in the store </marquee>
+</div>
+
+<div class="login" [hidden]="isPage01">
+    You have an open cart<br> from date {{this.cartDate| date:"dd/MM/yy"}}<br> and value of {{this.totalPrice}} Do you
+    want to continue with it?<br>
+    <input type="button" value="yse" class="button-cart" (click)="onYesClicked()" />
+    <input type="button" value="no" class="button-cart" (click)="onNoClicked()" />
+</div>

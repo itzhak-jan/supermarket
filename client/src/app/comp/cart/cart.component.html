@@ -1,0 +1,15 @@
+<div class="my-cart">
+    <h1 class="header">the cart of {{this.stateService.userName}}!</h1>
+
+    <h3 class="Total-price">the Total price is {{this.stateService.totalPrice}}₪</h3>
+
+    <div class="container">
+        <div *ngFor="let product of this.stateService.prodactsCart" class="product-cart">
+            <app-item-cart [productCart]="product"></app-item-cart>
+        </div>
+    </div>
+    <h3 class="Total-price" *ngIf="this.stateService.totalPrice!=0">the Total price is {{this.stateService.totalPrice}}₪
+    </h3>
+    <button class="continue-to-pay" *ngIf="this.stateService.totalPrice!=0" (click)="paymentForCart()">Continue to
+        pay</button>
+</div>

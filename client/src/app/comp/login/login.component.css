@@ -1,0 +1,24 @@
+:host {
+    grid-column: span 12;
+    margin-top: 15px;
+}
+
+.login {
+    margin-left: auto;
+    margin-right: auto;
+
+    background-color: aliceblue;
+    width: 280px;
+    padding: 10px;
+}
+
+.button-cart {
+    margin: 20px;
+    background-color: rgb(225 224 224);
+}
+
+.button-cart:hover {
+    color: white;
+    background-color: gray;
+    cursor: pointer;
+}

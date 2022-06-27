@@ -1,0 +1,39 @@
+<div class="payment">
+    <h1>payment-page!</h1>
+
+    <p class="back" (click)="backToStore()">Back to the store</p>
+
+    <div class="container">
+
+         city to shipment
+         <select [(ngModel)]="city" [class.error]="errorMassege.includes('city-Empty')">
+              <option value="Jerusalem">Jerusalem</option>
+              <option value="Tel-Aviv">Tel-Aviv</option>
+              <option value="Netanya">Netanya</option>
+              <option value="Haifa">Haifa</option>
+              <option value="Beer-Sheva">Beer-Sheva</option>
+              <option value="Ashdod">Ashdod</option>
+         </select>
+         <br><br>
+
+         <p [hidden]="!errorMassege.includes('city-Empty')" class="error-message">Your city is empty</p>
+
+         adress to shipment:<input type="text" [(ngModel)]="adress"
+              [class.error]="errorMassege.includes('adress-Empty')">
+         <br><br>
+         <p [hidden]="!errorMassege.includes('adress-Empty')" class="error-message">Your adress is empty</p>
+
+         date to shipment:<input type="date" [(ngModel)]="dateToShipment"
+              [class.error]="errorMassege.includes('date-Empty')"> <br><br>
+         <p [hidden]="!errorMassege.includes('date-Empty')" class="error-message">your date to shipment is empty</p>
+
+         credit-card to shipment:<input type="Number" [(ngModel)]="creditCard"
+              [class.error]="errorMassege.includes('credit-card-Empty')|| errorMassege.includes('credit-card-incorrect')">
+         <br><br>
+         <p [hidden]="!errorMassege.includes('credit-card-Empty')" class="error-message">your credit-card is empty</p>
+         <p [hidden]="!errorMassege.includes('credit-card-incorrect')" class="error-message">The credit card entered is
+              incorrect,<br> try again with 16 digits
+              (to facilitate the checks then for example 9876543210123456)</p>
+    </div>
+    <button type="submit" (click)="pay()">Pay</button>
+</div>

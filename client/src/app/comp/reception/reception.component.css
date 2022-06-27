@@ -1,0 +1,12 @@
+:host {
+    grid-column: span 12;
+    margin-top: 15px;
+}
+
+.reception {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: aliceblue;
+    width: 350px;
+    padding: 20px;
+}

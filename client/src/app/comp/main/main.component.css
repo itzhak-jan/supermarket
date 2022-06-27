@@ -1,0 +1,6 @@
+:host{
+    grid-column: span 12;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); 
+    padding: 0px;
+}
