@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
 
   adress: string = '';
   city: string = '';
-  cardID: number;
+  cardID: string;
 
   user: UserRegisterModel
 

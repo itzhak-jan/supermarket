@@ -1,19 +1,19 @@
 :host {
     grid-column: span 9;
-    display: flex;
     flex-direction: column;
 }
 
 .container {
     display: flex;
     flex-flow: wrap;
-    align-items: center;
+    justify-content:center;
 }
 
 .bar-category {
+    display: flex;
     margin: auto;
     margin-top: 10px;
-    display: flex;
+    justify-content:center;
 }
 
 .category {

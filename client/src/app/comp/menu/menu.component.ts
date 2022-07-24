@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StateService } from 'src/app/services/state.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-menu',
@@ -19,7 +20,7 @@ export class MenuComponent implements OnInit {
     this.stateService.userName = 'guest';
     this.stateService.search = '';
     this.stateService.prodactsCart = []
-    this.stateService.totalPrice =0
+    this.stateService.totalPrice = 0
     sessionStorage.clear();
     this.router.navigate(['/login'])
   }
@@ -29,10 +30,6 @@ export class MenuComponent implements OnInit {
   }
   onLoginClicked() {
     this.router.navigate(['/login'])
-  }
-
-  onReportsClicked() {
-    this.router.navigate(['/reports'])
   }
 
 }

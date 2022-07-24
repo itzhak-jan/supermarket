@@ -49,6 +49,10 @@ export class AdminPageComponent implements OnInit {
     if (!this.price) {
       this.price = this.stateService.editProduct.price
     }
+    if (this.price < 0) {
+      alert('Price must be positive')
+      this.price = this.stateService.editProduct.price
+    }
     if (!this.categoryID) {
       this.categoryID = this.stateService.editProduct.categoryID
     }
@@ -73,18 +77,24 @@ export class AdminPageComponent implements OnInit {
 
   cancel() {
     this.stateService.editProduct = null
+    this.errorMassege = ''
   }
 
   onAddNewProductHTML() {
     this.AddNewProductHTML = !this.AddNewProductHTML
-    this.stateService.editProduct = null
-    this.imgUrl = ""
-    this.name = ""
-    this.price = 0
-    this.categoryID = null
+    if(this.stateService.editProduct != null){
+      this.stateService.editProduct = null
+      this.imgUrl = ""
+      this.name = ""
+      this.price = 0
+      this.categoryID = null
+      this.AddNewProductHTML = true
+    }
+
   }
   cancelAdd() {
     this.AddNewProductHTML = false
+    this.errorMassege = ''
   }
 
   addProduct() {
@@ -97,6 +107,9 @@ export class AdminPageComponent implements OnInit {
     }
     if (!this.price) {
       this.errorMassege += 'price-empty'
+    }
+    if (this.price < 0) {
+      this.errorMassege += 'Price must be positive'
     }
     if (!this.categoryID) {
       this.errorMassege += 'category-empty'

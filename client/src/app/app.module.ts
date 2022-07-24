@@ -20,6 +20,7 @@ import { AuthenticationInterceptor } from './interceptors/AuthenticationIntercep
 import { PaymentPageComponent } from './comp/payment-page/payment-page.component';
 import { ReceptionComponent } from './comp/reception/reception.component';
 import { FormsModule } from '@angular/forms';
+import { OnlyNumbersDirective } from './directives/only-numbers.directive';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { FormsModule } from '@angular/forms';
     ItemCartComponent,
     AdminPageComponent,
     PaymentPageComponent,
-    ReceptionComponent
+    ReceptionComponent,
+    OnlyNumbersDirective
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,9 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, 
+      useClass: AuthenticationInterceptor, 
+      multi: true }
   ],
   bootstrap: [AppComponent]
 })

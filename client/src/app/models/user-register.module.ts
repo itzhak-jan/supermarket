@@ -6,7 +6,7 @@ export default interface UserRegisterModel {
   userName: string,
   mail: string,
   password: string,
-  cardID: number,
+  cardID: string,
   city: string,
   adress: string,
   birthDate: string

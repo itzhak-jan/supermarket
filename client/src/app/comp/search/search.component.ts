@@ -8,7 +8,8 @@ import { StateService } from 'src/app/services/state.service';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(public stateService: StateService) { }
+  constructor(public stateService: StateService) {
+   }
   searchWord:string = this.stateService.search
 
   ngOnInit(): void {

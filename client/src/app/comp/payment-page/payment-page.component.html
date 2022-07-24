@@ -26,8 +26,9 @@
          date to shipment:<input type="date" [(ngModel)]="dateToShipment"
               [class.error]="errorMassege.includes('date-Empty')"> <br><br>
          <p [hidden]="!errorMassege.includes('date-Empty')" class="error-message">your date to shipment is empty</p>
+         <p [hidden]="!errorMassege.includes('date-full')" class="error-message">The day you selected is already busy, please select another day</p>
 
-         credit-card to shipment:<input type="Number" [(ngModel)]="creditCard"
+         credit-card to shipment:<input appOnlyNumbers type="text" [(ngModel)]="creditCard"
               [class.error]="errorMassege.includes('credit-card-Empty')|| errorMassege.includes('credit-card-incorrect')">
          <br><br>
          <p [hidden]="!errorMassege.includes('credit-card-Empty')" class="error-message">your credit-card is empty</p>

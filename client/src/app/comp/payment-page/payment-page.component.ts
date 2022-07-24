@@ -12,7 +12,21 @@ import { StateService } from 'src/app/services/state.service';
 export class PaymentPageComponent implements OnInit {
 
   constructor(private router: Router, public StateService: StateService,
-    public CartService: CartService,  public OrderService: OrderService) { }
+    public CartService: CartService, public OrderService: OrderService) {
+
+    const observable = this.OrderService.getFullDays()
+    observable.subscribe(Response => {
+      this.fullDays = Response;
+      console.log(this.fullDays);
+    },
+      error => {
+        alert('conected failed')
+        console.error(error);
+      }
+    )
+  }
+
+  fullDays: any[] = []
   city: string
   adress: String = ''
   dateToShipment: Date
@@ -36,6 +50,13 @@ export class PaymentPageComponent implements OnInit {
     if (!this.dateToShipment) {
       this.errorMassege = `date-Empty`
     }
+    else {
+       let full = this.fullDays.filter(day => {return day.date == this.dateToShipment }) 
+       console.log(full);
+       if(full[0]){
+        this.errorMassege = `date-full`
+       }
+      }
     if (!this.creditCard) {
       this.errorMassege = `credit-card-Empty`
     }

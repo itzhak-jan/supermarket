@@ -4,13 +4,7 @@
     <button class="menu-button" (click)="onLoginClicked()">login</button>
 </div>
 
-<div *ngIf="this.stateService.status == 'user'">
-    hallow {{this.stateService.userName}}! 
+<div *ngIf="this.stateService.status != 'guest'">
+    hello {{this.stateService.userName}}! 
     <button class="menu-button" (click)="onLogOutClicked()">log-out</button>
-</div>
-
-<div *ngIf="this.stateService.status == 'admin'">
-    hallow {{this.stateService.userName}}! <br>
-    <button class="menu-button" (click)="onLogOutClicked()">log-out</button>
-    <button class="menu-button" (click)="onReportsClicked()">reports</button>
 </div>

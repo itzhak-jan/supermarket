@@ -15,13 +15,12 @@ export class LoginComponent implements OnInit {
   userName: string = '';
   password: string = '';
   totalPrice: number = 0;
-  amountOfOrders: number = 0;
-  amountOfProduct: number = 0;
-  paramsToLoginPage: { amountOfOrders: number, amountOfProduct: number }
+  paramsToLoginPage: { amountOfOrders: number, amountOfProduct: number } = { amountOfOrders: 0, amountOfProduct: 0 }
 
   constructor(public stateService: StateService, private usersService: UserService,
     private router: Router, private cartService: CartService, public ItemsService: ItemsService) {
 
+    this.LogOut()
     const observable = ItemsService.getPramsToLoginPage()
     observable.subscribe(Response => {
       this.paramsToLoginPage = Response[0]
@@ -91,4 +90,16 @@ export class LoginComponent implements OnInit {
       }
     )
   }
+
+
+  LogOut() {
+    this.stateService.status = 'guest';
+    this.stateService.userName = 'guest';
+    this.stateService.search = '';
+    this.stateService.prodactsCart = []
+    this.stateService.totalPrice = 0
+    sessionStorage.clear();
+    this.router.navigate(['/login'])
+  }
+
 }

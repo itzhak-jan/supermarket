@@ -25,16 +25,18 @@
 
 
 <div class="product-card" *ngIf="AddNewProductHTML && !this.stateService.editProduct">
-    <div>url-img: <input type="text" [(ngModel)]="imgUrl" [class.error]="errorMassege.includes('imgUrl-empty')">
+    
+    <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCpQKVzCrcnyjebixEE3w9azScRjXVSYrBLBqArIe585ns8iWwGOZdc619ofBXUe9MyHM&usqp=CAU" class="product-img" /><br>
+        url-img: <input type="text" [(ngModel)]="imgUrl" class = "add-input" [class.error]="errorMassege.includes('imgUrl-empty')">
         <p [hidden]="!errorMassege.includes('imgUrl-empty')" class="error-message">imgUrl-empty</p>
     </div>
-    <div>name: <input type="text" [(ngModel)]="name" [class.error]="errorMassege.includes('name-empty')">
+    <div>name: <input type="text" [(ngModel)]="name" class = "add-input" [class.error]="errorMassege.includes('name-empty')">
         <p [hidden]="!errorMassege.includes('name-empty')" class="error-message">name-empty</p>
     </div>
-    <div>price: <input type="number" [(ngModel)]="price" [class.error]="errorMassege.includes('price-empty')">
+    <div>price: <input type="number" [(ngModel)]="price" class = "add-input" [class.error]="errorMassege.includes('price-empty')">
         <p [hidden]="!errorMassege.includes('price-empty')" class="error-message">price-empty</p>
     </div>
-    <div>category: <select type="text" [class.error]="errorMassege.includes('category-empty')" [(ngModel)]="categoryID">
+    <div>category: <select type="text" class = "add-input" [class.error]="errorMassege.includes('category-empty')" [(ngModel)]="categoryID">
             <option *ngFor="let categoryName of this.categories.categoriesArr" value="{{categoryName.id}}">
                 {{categoryName.name}}</option>
         </select>

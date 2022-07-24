@@ -58,7 +58,7 @@
             <p [hidden]="!errorMassege.includes('adressEmpty')" class="error-message">Your adress is empty</p>
             <br />
 
-            <p class="register-inputs">ID card: <input type="number" [(ngModel)]="cardID"
+            <p class="register-inputs">ID card: <input appOnlyNumbers type="text"  [(ngModel)]="cardID"
                             [class.error]="errorMassege.includes('cardIDEmpty')"></p>
             <p [hidden]="!errorMassege.includes('cardIDEmpty')" class="error-message">Your Card-id is empty</p>
             <p [hidden]="!errorMassege.includes('cardIDNotGood')" class="error-message">An ID card must consist of 9

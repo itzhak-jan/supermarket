@@ -10,7 +10,7 @@
 
     <div class="container">
         <div class="product" id="product" *ngFor="let product of this.cartsService.reception">
-            <div>{{product.prodName}}</div>
+            <div [class.search]="product.prodName.toLocaleLowerCase().includes(this.stateService.search.toLocaleLowerCase())">{{product.prodName}}</div>
             <div>{{product.price}} * {{product.count}}units = {{product.price*product.count | currency:'ILS'}}</div>
             _________________________________
         </div>
