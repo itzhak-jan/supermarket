@@ -1,11 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const usersLogic = require('../logic/user-logic');
-
+const productsLogic = require('../logic/product-logic');
 
 router.post("/", async (request, response, next) => {
     let userRegisterData = request.body;
-    console.log(userRegisterData);
 
     try {
         userRegisterData.status = "user"
@@ -14,7 +13,7 @@ router.post("/", async (request, response, next) => {
     }
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message)
+        response.status(400).send(e.message)
     }
 });
 
@@ -29,11 +28,20 @@ router.post('/login', async (request, response) => {
     }
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message)
+        response.status(400).send(e.message)
     }
 });
 
-
+router.get("/params-to-Login-page", async (request, response) => {
+    try {
+        let params = await productsLogic.getPramsToLoginPage();
+        response.json(params);
+    }
+    catch (e) {
+        console.error(e);
+        response.status(400).send(e.message)
+    }
+});
 
 
 module.exports = router;

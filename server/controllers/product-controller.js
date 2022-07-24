@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const productsLogic = require('../logic/product-logic');
-const jwt_decode = require('jwt-decode');
+const login_Filter = require('../middleware/login-filter')
 
 
 router.get("/", async (request, response) => {
@@ -11,18 +11,15 @@ router.get("/", async (request, response) => {
     }
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message)
+        response.status(400).send(e.message)
     }
 });
 
 router.post("/", async (request, response) => {
-    let token = request.headers.authorization
-    let decodedHeader = jwt_decode(token)
-
-    let userType = decodedHeader.userType
-    let product = request.body;
-
     try {
+        let product = request.body;
+        let userType = request.body.token.userType
+
         if(userType != "admin"){
             throw new Error("your not admin!!")
         }
@@ -30,20 +27,16 @@ router.post("/", async (request, response) => {
         response.json();
     }
     catch (e) {
-        
         console.error(e);
-        response.status(600).send(e.message)
+        response.status(400).send(e.message)
     }
 });
 
 router.put("/", async (request, response) => {
-    let token = request.headers.authorization
-    let decodedHeader = jwt_decode(token)
-
-    let userType = decodedHeader.userType
-    let product = request.body;
-
     try {
+        let product = request.body;
+        let userType = request.body.token.userType
+
         if(userType != "admin"){
             throw new Error("your not admin!!")
         }
@@ -56,16 +49,5 @@ router.put("/", async (request, response) => {
     }
 });
 
-
-router.get("/Login-page", async (request, response) => {
-    try {
-        let params = await productsLogic.getPramsToLoginPage();
-        response.json(params);
-    }
-    catch (e) {
-        console.error(e);
-        response.status(600).send(e.message)
-    }
-});
 
 module.exports = router;

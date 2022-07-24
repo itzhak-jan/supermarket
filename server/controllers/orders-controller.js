@@ -1,18 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const jwt_decode = require('jwt-decode');
 const ordersLogic = require('../logic/orders-logic')
 const res = require('express/lib/response')
 const fs = require('fs/promises')
 const req = require('express/lib/request')
+const login_Filter = require('../middleware/login-filter')
 
 router.get("/", async (request, response) => {
-
-    let token = request.headers.authorization
-    let decodedHeader = jwt_decode(token)
-    let userType = decodedHeader.userType
-
     try {
+        let userType = request.body.token.userType;
+
         if (userType != "admin") {
             throw new Error("your not admin!!")
         }
@@ -25,14 +22,25 @@ router.get("/", async (request, response) => {
     }
 });
 
-router.post("/", async (request, response) => {
 
-    let token = request.headers.authorization
-    let decodedHeader = jwt_decode(token)
-    let order = request.body
-    order.userId = decodedHeader.userId
+router.get("/full-days", async (request, response) => {
 
     try {
+        let fullDays = await ordersLogic.getFullDays();
+        response.json(fullDays)
+    }
+    catch (e) {
+        console.error(e);
+        response.status(418).send(e.message)
+    }
+});
+
+router.post("/", async (request, response) => {
+
+    try {
+        let order = request.body
+        order.userId = request.body.token.userId
+        
         let reception = await ordersLogic.addOrder(order);
         response.json(reception)
     }
@@ -44,26 +52,26 @@ router.post("/", async (request, response) => {
 
 router.post("/Download-receipt", async (request, response) => {
 
-    let prducts = request.body ;
-    console.log(prducts);
-    const id = Math.random().toString().replace('0.','') 
+    let prducts = request.body;
+    const id = Math.random().toString().replace('0.', '')
     let str = 'Recipe No. ' + id
     for (const product of prducts) {
         str += `
         ${product.prodName} ||
-        ${product.price} * ${product.count}units = ${product.price*product.count}₪
+        ${product.price} * ${product.count}units = ${product.price * product.count}₪
         _______________________________`
     }
 
     try {
-        await fs.writeFile(id+'.txt', str)
+        await fs.writeFile(id + '.txt', str)
         console.log('File created');
-        res.json({id})
-        res.sendFile(__dirname+'/'+req.params.id+'.txt')
-    } catch (err) {
+        res.json({ id })
+        res.sendFile(__dirname + '/' + req.params.id + '.txt')
+    }
+    catch (err) {
         console.log(err);
     }
- 
+
 
 });
 

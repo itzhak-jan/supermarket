@@ -1,7 +1,6 @@
 const usersDal = require('../dal/user-dal');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-const config = require('../config/config.json');
 const cartsLogic = require('../logic/carts-logic');
 
 
@@ -25,7 +24,7 @@ async function login(userLoginData) {
     userLoginData.password = encryptPassword(userLoginData.password);
 
     let userData = await usersDal.login(userLoginData);
-    if (!userData) {
+    if (!userData[0].name) {
         throw new Error("Login failed");
     }
     userData = userData[0];
@@ -34,10 +33,9 @@ async function login(userLoginData) {
     cartDate = userData.cartDate;
     totalPrice = userData.totalPrice;
 
-    const token = jwt.sign({ userId: userData.id, userType: userData.status, userName: userData.name }, config.secret);
+    const token = jwt.sign({ userId: userData.id, userType: userData.status, userName: userData.name }, process.env.SECRET);
     let successfulLoginResponse = { token, userType, userName, cartDate, totalPrice };
 
-    console.log(successfulLoginResponse);
     return successfulLoginResponse;
 }
 
@@ -80,9 +78,6 @@ function encryptPassword(password) {
     let passwordWithSalt = saltLeft + password + saltRight;
     return crypto.createHash("md5").update(passwordWithSalt).digest("hex");
 }
-
-
-
 
 
 

@@ -1,19 +1,17 @@
-const expressJwt = require("express-jwt");
-const config = require('../config/config.json');
-const { secret } = config;
+const jwt_decode = require('jwt-decode');
 
-function loginFilter() {
-  return expressJwt({ secret, algorithms: ["HS256"] }).unless({
-    path: [
-      { url: "/products", method: "GET" },
-      { url: "/users", method: "POST" },
-      { url: "/carts", method: "GET"  },
-      { url: "/users/login", method: "POST"  },
-      { url: "/products/Login-page", method: "GET" },
-      { url: "/orders/Download-receipt", method: "POST" },
-    ],
-  });
+async function loginFilter(req, res, next) {
+    try {
+        let token =  req.headers.authorization
+        const userDetails = jwt_decode(token);
+        req.body.token = userDetails;
+        next();
+    }
+    catch (e) {
+        console.error(e);
+        res.status(403).send(e.message)
+    }
+
 }
-
 
 module.exports = loginFilter;

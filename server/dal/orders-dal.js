@@ -49,8 +49,18 @@ async function creatReception(order) {
     return reception
 }
 
+
+async function getFullDays() {
+    let sql = `SELECT date_order as date , count(date_order) as count
+    FROM supermarket.orders o 
+    group by date_order`
+    let fullDays = await connection.execute(sql);
+    return fullDays;
+}
+
 module.exports = {
     getAllOrders,
     addOrder,
-    creatReception
+    creatReception,
+    getFullDays
 }

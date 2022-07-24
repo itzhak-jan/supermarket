@@ -8,6 +8,17 @@ async function getAllOrders() {
     return orders;
 }
 
+
+async function getFullDays() {
+    let ordersDays = await ordersDal.getFullDays()
+    console.log(ordersDays);
+    console.log("___________________________________________________");
+    let fullDays = ordersDays.filter(day => {return day.count >= 3})
+    console.log(fullDays);
+    return fullDays;
+}
+
+
 async function addOrder(order) {
 
     if (!order.cartId) {
@@ -26,4 +37,5 @@ async function addOrder(order) {
 module.exports = {
     getAllOrders,
     addOrder,
+    getFullDays
 }

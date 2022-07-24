@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
@@ -9,20 +10,19 @@ const cartsController = require('./controllers/carts-controler');
 const productCartsController = require('./controllers/product-cart-controller');
 const categoriesController = require('./controllers/categories-controller');
 const ordersController = require('./controllers/orders-controller');
-
 const loginFilter = require('./middleware/login-filter');
 
-server.use(cors({origin: "http://localhost:4200"}));
-server.use(loginFilter());
 
 server.use(express.json());
+server.use("/api/users", usersController);
 
-server.use("/users", usersController);
-server.use("/products", productController);
-server.use("/carts", cartsController);
-server.use("/productCart", productCartsController);
-server.use("/categories", categoriesController);
-server.use("/orders", ordersController);
+
+server.use(loginFilter);
+server.use("/api/products", productController);
+server.use("/api/carts", cartsController);
+server.use("/api/productCart", productCartsController);
+server.use("/api/categories", categoriesController);
+server.use("/api/orders", ordersController);
 
 
 

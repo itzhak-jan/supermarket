@@ -1,17 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const cartsLogic = require('../logic/carts-logic');
-const jwt_decode = require('jwt-decode');
 const ordersLogic = require('../logic/orders-logic')
+const loginFilter = require('../middleware/login-filter')
 
 
 router.get("/", async (request, response) => {
 
-    let token = request.headers.authorization
-    let decodedHeader = jwt_decode(token)
-    id = decodedHeader.userId
-
     try {
+        let id = request.body.token.userId;
         let myCart = await cartsLogic.getMyCart(id);
         response.json(myCart)
     }
@@ -22,12 +19,8 @@ router.get("/", async (request, response) => {
 });
 
 router.put("/", async (request, response) => {
-
-    let token = request.headers.authorization
-    let decodedHeader = jwt_decode(token)
-    id = decodedHeader.userId
-
     try {
+        let id = request.body.token.userId;
         await cartsLogic.cleanCart(id);
         response.json()
     }
@@ -39,12 +32,10 @@ router.put("/", async (request, response) => {
 
 router.post("/", async (request, response) => {
 
-    let token = request.headers.authorization
-    let decodedHeader = jwt_decode(token)
-    let order = request.body
-    order.userId = decodedHeader.userId
-
     try {
+        let order = request.body
+        order.userId = request.body.token.userId
+
         let reception = await ordersLogic.addOrder(order);
         response.json(reception)
     }
